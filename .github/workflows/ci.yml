@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Compile Code
-        run: javac LoginApp.java Test_Login.java
+        run: javac LoginApp.java TEST_Login.java
 
       - name: Run Tests
-        run: java -cp .:junit-platform-console-standalone-1.8.0.jar org.junit.platform.console.ConsoleLauncher --select-class=Test_Login
+        run: java -cp .:junit-platform-console-standalone-1.8.0.jar org.junit.platform.console.ConsoleLauncher --select-class=TEST_Login
