@@ -35,16 +35,16 @@ jobs:
           --health-retries=3
 
     steps:
-      - name: Checkout code
+      - name: Fetch Source Code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 23
+      - name: Initialize JDK 23 Environment
         uses: actions/setup-java@v3
         with:
           java-version: '23'
           distribution: 'temurin'
 
-      - name: Wait for MySQL to be ready
+      - name: Ready MySQL
         run: |
           for i in {1..10}; do
             if mysqladmin ping -h 127.0.0.1 -P 3306 --silent; then
@@ -55,7 +55,7 @@ jobs:
             sleep 5
           done
 
-      - name: Install MySQL client
+      - name: Configure MySQL client
         run: sudo apt-get install -y mysql-client
 
       - name: Cache Maven dependencies
@@ -66,19 +66,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Populate Database
+      - name: Populate DB
         run: |
           mysql -h 127.0.0.1 -P 3306 -u root -p'12345678' login_data < src/A2.sql
 
-      - name: Install dependencies and run
+      - name: Set Up and Execute Dependencies
         run: |
           mvn clean install
 
-      - name: Run tests
+      - name: Run Unit Tests
         run: |
           mvn test -Djava.awt.headless=true
 
-      - name: Upload test results
+      - name: Upload The Results
         if: failure()
         uses: actions/upload-artifact@v3
         with:
