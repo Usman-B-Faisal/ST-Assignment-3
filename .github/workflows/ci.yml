@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  buildAndTest:
     runs-on: ubuntu-latest
 
     services:
