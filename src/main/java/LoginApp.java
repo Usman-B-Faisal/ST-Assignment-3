@@ -1,19 +1,17 @@
 package main.java;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class LoginApp extends JFrame {
-    private JTextField emailField;
-    private JPasswordField passwordField;
+public class LoginApp {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/login_data";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "12345678";
 
     public LoginApp() {
+
     }
     public String authenticateUser(String email, String password) {
         String userName = null;
