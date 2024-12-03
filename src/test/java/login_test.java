@@ -6,7 +6,7 @@ import main.java.LoginApp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TEST_Login {
+public class login_test {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/login_data"; // MySQL database
     private static final String DB_USER = "root";
